@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>English Quiz – WH · Tenses · Articles · Conversation (40) · Pink-Gray · Balanced ABCD</title>
+<style>
+  :root{
+    --pink:#ec4899; --pink2:#db2777; 
+    --bg1:#0f0f14; --bg2:#15151f; 
+    --muted:#cbd5e1; --text:#e5e7eb; 
+    --accent:#f472b6; --ok:#22c55e; --bad:#ef4444;
+    --card-border: rgba(255,255,255,.10);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Noto Sans Thai", "Sarabun", Roboto, Arial;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 600px at -10% -10%, #f472b622, transparent 60%),
+      radial-gradient(1000px 500px at 110% 0%, #9ca3af22, transparent 60%),
+      linear-gradient(180deg, var(--bg1), var(--bg2));
+    min-height:100dvh;
+  }
+  header{
+    position:sticky; top:0; z-index:10;
+    background:linear-gradient(90deg, var(--pink), var(--pink2)); color:white;
+    border-bottom:3px solid var(--accent);
+    box-shadow:0 8px 24px rgba(0,0,0,.25);
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:14px 18px; display:flex; align-items:center; gap:12px}
+  .logo{width:44px; height:44px; border-radius:12px; background: radial-gradient(circle at 30% 30%, #fde68a, var(--accent)); display:grid; place-items:center; color:#111; font-weight:900;}
+  h1{font-size:clamp(18px,2.8vw,28px); margin:0;} .subtitle{font-size:clamp(12px,2vw,14px); opacity:.9; margin-top:2px}
+  main{max-width:960px; margin:22px auto; padding:0 16px 40px}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    border:1px solid var(--card-border);
+    box-shadow: 0 12px 40px rgba(2,6,23,.6);
+    border-radius:18px; padding:18px; backdrop-filter: blur(6px);
+  }
+  .hero{display:grid; gap:16px; padding:28px; background:linear-gradient(180deg, #1d1b20, #191a22); border:1px solid var(--card-border); border-radius:20px;}
+  .title{font-size:clamp(20px,3vw,30px); font-weight:800}
+  .tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:rgba(244,114,182,.15); color:var(--accent); border:1px solid rgba(244,114,182,.35); font-weight:700;}
+  .row{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+  input[type='text']{background:#0b1220; color:var(--text); border:2px solid #2a2f44; border-radius:12px; padding:12px 14px; width:min(520px, 100%); outline:none; font-size:16px;}
+  input[type='text']:focus{border-color:var(--pink); box-shadow:0 0 0 4px rgba(236,72,153,.25)}
+  .btn{appearance:none; border:none; cursor:pointer; padding:12px 18px; border-radius:12px; font-weight:800; letter-spacing:.3px; transition:transform .06s ease, box-shadow .12s ease, filter .12s ease; display:inline-flex; align-items:center; gap:10px;}
+  .btn:active{transform:translateY(1px)} .btn-primary{background:linear-gradient(180deg, var(--accent), #f43f5e); color:#111; box-shadow:0 8px 18px rgba(244,114,182,.35);} .btn-ghost{background:transparent; color:var(--muted); border:2px dashed rgba(255,255,255,.3)}
+  .info{color:var(--muted); font-size:14px} .hidden{display:none !important}
+  .q-head{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:8px 4px 16px}
+  .progress{width:100%; height:12px; background:#12131b; border-radius:999px; overflow:hidden; border:1px solid rgba(255,255,255,.08);} .progress>div{height:100%; background:linear-gradient(90deg, var(--accent), #fb7185); width:0%; transition:width .4s ease;}
+  .question{font-size:clamp(16px,2.6vw,20px); font-weight:700; line-height:1.45; padding:8px 0 6px;}
+  .choices{display:grid; gap:12px; margin-top:10px}
+  .choice{border:2px solid rgba(244,114,182,.25); background:rgba(244,114,182,.06); color:var(--text); padding:12px 14px; border-radius:14px; cursor:pointer; position:relative; transition: border-color .15s ease, background .15s ease, transform .06s ease; display:flex; align-items:flex-start; gap:10px;}
+  .choice:hover{border-color:var(--accent)} .choice input{position:absolute; inset:0; opacity:0; cursor:pointer} .choice .label{font-weight:800; color:var(--accent)}
+  .choice.selected{background:rgba(244,114,182,.18); border-color:var(--accent); box-shadow:0 0 0 4px rgba(244,114,182,.15) inset; transform:translateY(1px);}
+  .choices.locked .choice{pointer-events:none; opacity:0.98}
+  .choice.correct{border-color:rgba(34,197,94,.7); background:rgba(34,197,94,.12)}
+  .choice.wrong{border-color:rgba(239,68,68,.7); background:rgba(239,68,68,.10)}
+  .reveal{margin-top:10px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); font-size:14px; color:var(--muted)}
+  .reveal .right{color:var(--ok); font-weight:800}
+  .reveal .wrong{color:var(--bad); font-weight:800}
+  .nav{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:16px}
+  .btn-next{background:linear-gradient(180deg, var(--pink2), #be185d); color:white; box-shadow:0 8px 18px rgba(190,24,93,.35);} .btn-prev{background:transparent; color:var(--text); border:2px solid rgba(255,255,255,.2)} .btn-next:disabled{opacity:.6; filter:grayscale(.3)}
+  .pill{padding:6px 10px; border-radius:999px; background:rgba(236,72,153,.18); border:1px solid rgba(236,72,153,.35); color:#ffe4f1; font-weight:700;}
+  .score{display:grid; place-items:center; gap:10px; padding:20px; text-align:center} .score .big{font-size:clamp(42px,6vw,72px); font-weight:900; color:var(--accent)} .score .pass{color:var(--ok); font-weight:900} .score .fail{color:var(--bad); font-weight:900}
+  .review{display:grid; gap:14px; margin-top:12px} .review-item{border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03); border-radius:12px; padding:12px 14px}
+  .badge{display:inline-block; padding:4px 10px; border-radius:999px; font-weight:800; font-size:12px; margin-left:8px;} .good{background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.35); color:#bbf7d0} .bad{background:rgba(239,68,68,.15); border:1px solid rgba(239,68,68,.35); color:#fecaca}
+  .ans-line{font-size:14px; color:var(--muted); margin-top:6px}
+  .footer{margin-top:28px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; color:var(--muted); border-top:1px dashed rgba(255,255,255,.15); padding-top:12px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="logo">KP</div><div><h1>Kru Pai Classroom · English Quiz</h1><div class="subtitle">ภาษาอังกฤษ ม.1 — WH · Tenses · Articles · Conversation</div></div></div></header>
+<main>
+<section id="screen-start" class="card hero">
+  <div class="row" style="justify-content:space-between; align-items:center">
+    <div class="title">เกมทดสอบ (40 ข้อ)</div>
+    <div class="tag">วิชา: ภาษาอังกฤษ</div>
+  </div>
+  <div class="info">ใส่ชื่อเล่น แล้วเริ่มทำข้อสอบทีละข้อ <strong>กดคำตอบแล้วเฉลยทันที</strong> (สามารถกด “ไปข้อถัดไป” เพื่อข้ามข้อได้) และมีสรุปคะแนนพร้อมเฉลยท้ายเกม</div>
+  <div class="row">
+    <input id="playerName" type="text" placeholder="พิมพ์ชื่อเล่นก่อนเริ่ม (ตัวอย่าง: มิ้นท์)" />
+    <button class="btn btn-primary" id="btnStart">เริ่มทำแบบทดสอบ</button>
+  </div>
+</section>
+<section id="screen-quiz" class="card hidden">
+  <div class="q-head">
+    <div class="pill" id="pillPlayer">👩‍🎓 ผู้เล่น: -</div>
+    <div class="pill" id="pillCount">ข้อ <span id="qNumber">1</span>/<span id="qTotal">40</span></div>
+  </div>
+  <div class="progress"><div id="bar"></div></div>
+  <div class="question" id="qText"></div>
+  <div class="choices" id="choices"></div>
+  <div id="instantReveal" class="reveal hidden"></div>
+  <div class="nav">
+    <button class="btn btn-prev" id="btnPrev">ข้อก่อนหน้า</button>
+    <div style="display:flex; gap:10px">
+      <button class="btn btn-ghost" id="btnClear">ล้างคำตอบข้อนี้</button>
+      <button class="btn btn-next" id="btnNext">ไปข้อถัดไป</button>
+    </div>
+  </div>
+</section>
+<section id="screen-result" class="card hidden">
+  <div class="score">
+    <div class="title">สรุปผลคะแนน</div>
+    <div class="big" id="scoreText">0/40</div>
+    <div id="passText" class="pass hidden">ผ่าน 🎉 เก่งมาก!</div>
+    <div id="failText" class="fail hidden">ยังไม่ผ่าน ลองใหม่อีกครั้งนะ ✨</div>
+    <div class="row" style="justify-content:center">
+      <button class="btn btn-primary" id="btnReview">ดูเฉลยใต้แต่ละข้อ</button>
+      <button class="btn btn-ghost" id="btnRestart">กลับหน้าแรก</button>
+    </div>
+  </div>
+  <div id="reviewPanel" class="review hidden"></div>
+  <div class="footer"><div>© Kru Pai Classroom · วิชา: ภาษาอังกฤษ</div><div>Tip: กด “กลับหน้าแรก” เพื่อเริ่มใหม่หรือเปลี่ยนชื่อผู้เล่น</div></div>
+</section>
+</main>
+<script>
+// -------------- DATA (Balanced A/B/C/D) --------------
+// Target distribution: A=10, B=10, C=10, D=10
+
+const QUESTIONS = [
+  // WH-Questions (1-10)
+  {"q":"___ is your favorite subject? – English.","c":["What","Who","When","Where"],"a":0,"cat":"WH-Questions"}, // A
+  {"q":"___ are you from? – Thailand.","c":["When","Where","Who","What"],"a":1,"cat":"WH-Questions"}, // B
+  {"q":"___ is this bag? – It’s mine.","c":["Whom","Which","Whose","Who"],"a":2,"cat":"WH-Questions"}, // C (moved Whose to C)
+  {"q":"___ are you late? – Because of traffic.","c":["Where","How","When","Why"],"a":3,"cat":"WH-Questions"}, // D
+  {"q":"___ did you call? – My mom.","c":["Which","Who","Whose","When"],"a":1,"cat":"WH-Questions"}, // B
+  {"q":"___ did the class start? – At 8 a.m.","c":["When","Where","Why","How"],"a":0,"cat":"WH-Questions"}, // A
+  {"q":"___ does it cost? – 50 baht.","c":["Which","What","How many","How much"],"a":3,"cat":"WH-Questions"}, // D
+  {"q":"___ did you get to school? – By bus.","c":["Why","How","Where","When"],"a":1,"cat":"WH-Questions"}, // B
+  {"q":"___ is the library? – On the second floor.","c":["Who","Which","Where","Whose"],"a":2,"cat":"WH-Questions"}, // C
+  {"q":"___ one do you prefer, tea or coffee?","c":["What","Which","Who","Whose"],"a":1,"cat":"WH-Questions"}, // B
+
+  // Tenses (11-20)
+  {"q":"She usually ___ to school by bus.","c":["goes","go","went","going"],"a":0,"cat":"Tenses"}, // A
+  {"q":"Listen! The baby ___ now.","c":["cries","is crying","cry","cried"],"a":1,"cat":"Tenses"}, // B
+  {"q":"They ___ football yesterday.","c":["play","plays","played","are playing"],"a":2,"cat":"Tenses"}, // C
+  {"q":"I ___ my homework already.","c":["have finished","finished","am finishing","will finish"],"a":0,"cat":"Tenses"}, // A
+  {"q":"He ___ TV when I called him.","c":["watched","is watching","has watched","was watching"],"a":3,"cat":"Tenses"}, // D
+  {"q":"We ___ to the beach next weekend.","c":["go","are go","going","will go"],"a":3,"cat":"Tenses"}, // D
+  {"q":"The sun ___ in the east.","c":["rises","rose","is rising","has risen"],"a":0,"cat":"Tenses"}, // A
+  {"q":"She ___ in Bangkok since 2020.","c":["lives","lived","has lived","is living"],"a":2,"cat":"Tenses"}, // C
+  {"q":"By the time we arrived, the movie ___.","c":["has started","had started","started","was starting"],"a":1,"cat":"Tenses"}, // B
+  {"q":"If it rains, we ___ at home.","c":["stay","stayed","will stay","are staying"],"a":2,"cat":"Tenses"}, // C
+
+  // Articles (21-30)
+  {"q":"I saw ___ elephant in the zoo.","c":["an","a","the","—"],"a":0,"cat":"Articles"}, // A
+  {"q":"Can you pass me ___ salt, please?","c":["a","the","an","—"],"a":1,"cat":"Articles"}, // B
+  {"q":"She is ___ honest person.","c":["an","a","the","—"],"a":0,"cat":"Articles"}, // A
+  {"q":"He wants to be ___ engineer.","c":["a","the","—","an"],"a":3,"cat":"Articles"}, // D
+  {"q":"We go to ___ school by bus.","c":["a","an","the","—"],"a":3,"cat":"Articles"}, // D
+  {"q":"I live on ___ third floor.","c":["a","an","the","—"],"a":2,"cat":"Articles"}, // C
+  {"q":"___ Nile is the longest river in Africa.","c":["The","A","An","—"],"a":0,"cat":"Articles"}, // A
+  {"q":"She plays ___ piano very well.","c":["a","an","the","—"],"a":2,"cat":"Articles"}, // C
+  {"q":"I bought ___ new book yesterday.","c":["a","an","the","—"],"a":0,"cat":"Articles"}, // A
+  {"q":"We met at ___ airport yesterday.","c":["a","an","the","—"],"a":2,"cat":"Articles"}, // C
+
+  // Conversation (31-40)
+  {"q":"A: How do you do?\nB: ___.","c":["How do you do?","I’m fine, thanks.","See you.","Nice trip."],"a":0,"cat":"Conversation"}, // A
+  {"q":"A: Excuse me, where is the nearest ATM?\nB: ___.","c":["It’s next to the pharmacy.","Yes, I do.","I’m 12 years old.","Blue."],"a":0,"cat":"Conversation"}, // A
+  {"q":"A: Would you like some tea?\nB: ___.","c":["It is on the table.","Because I’m tired.","Yes, please.","I’m playing soccer."],"a":2,"cat":"Conversation"}, // C
+  {"q":"A: Can I speak to Mr. Smith, please?\nB: ___.","c":["I’m speak.","Speaking.","He speak now.","I can speak English."],"a":1,"cat":"Conversation"}, // B
+  {"q":"A: What’s the weather like today?\nB: ___.","c":["I’m at school.","Because I’m tired.","It’s sunny.","It’s 9 o’clock."],"a":2,"cat":"Conversation"}, // C
+  {"q":"A: I lost my wallet.\nB: ___.","c":["I’m fine, thanks.","It costs 20 baht.","Yesterday.","I’m sorry to hear that."],"a":3,"cat":"Conversation"}, // D
+  {"q":"A: Could you open the window?\nB: ___.","c":["Yes, I could swim.","It’s on Monday.","Sure, no problem.","It very cold."],"a":2,"cat":"Conversation"}, // C
+  {"q":"A: How much is this T-shirt?\nB: ___.","c":["It’s 299 baht.","It’s red.","It’s very big.","I’m student."],"a":0,"cat":"Conversation"}, // A
+  {"q":"A: See you later!\nB: ___.","c":["Not at all.","Thank you very much.","Because I’m busy.","See you!"],"a":3,"cat":"Conversation"}, // D
+  {"q":"A: I have a headache.\nB: ___.","c":["He should to rest.","You should taking rest.","I go rest.","You should take a rest."],"a":3,"cat":"Conversation"} // D
+];
+
+// Short explanations for selected items (indices still valid by question number)
+const EXPLAINS = {
+  7: "\"How much\" ใช้กับราคา/ปริมาณที่นับไม่ได้",
+  12: "Present Continuous: be + V-ing → is crying",
+  14: "Present Perfect: have/has + V3 → have finished",
+  15: "Past Continuous: was/were + V-ing",
+  18: "ระยะเวลาถึงปัจจุบัน: has lived (since/for)",
+  19: "Past Perfect ก่อนอีกเหตุการณ์ในอดีต → had started",
+  21: "เสียงขึ้นต้น /e/ → ใช้ an",
+  23: "honest ออกเสียงขึ้นต้นด้วยเสียงสระ → an",
+  25: "สถานศึกษา/บ้าน/โบสถ์ บางบริบทไม่ใช้ article → at school",
+  28: "เครื่องดนตรีใช้ the → the piano",
+  31: "ตอบกลับทางการ: How do you do?"
+};
+
+// -------------- APP --------------
+let idx=0; const total=QUESTIONS.length; const answers=new Array(total).fill(null);
+const $=s=>document.querySelector(s); // const ก="ก".charCodeAt(0);
+const screenStart=$("#screen-start"), screenQuiz=$("#screen-quiz"), screenResult=$("#screen-result");
+const playerNameI=$("#playerName"), btnStart=$("#btnStart"), pillPlayer=$("#pillPlayer");
+const qNumber=$("#qNumber"), qTotal=$("#qTotal"), qText=$("#qText"), choicesBox=$("#choices"), bar=$("#bar");
+const btnPrev=$("#btnPrev"), btnNext=$("#btnNext"), btnClear=$("#btnClear");
+const scoreText=$("#scoreText"), passText=$("#passText"), failText=$("#failText");
+const btnReview=$("#btnReview"), btnRestart=$("#btnRestart"), reviewPanel=$("#reviewPanel");
+const instantReveal=$("#instantReveal");
+qTotal.textContent=total;
+
+function show(el){el.classList.remove("hidden")} function hide(el){el.classList.add("hidden")}
+function setProgress(){bar.style.width = Math.round((idx/total)*100)+'%';}
+function letter(k){return String.fromCharCode(65 + k);}
+
+function renderReveal(item){
+  instantReveal.innerHTML="";
+  if(answers[idx]==null){ hide(instantReveal); return; }
+  const correct=item.a; const user=answers[idx];
+  const ok=user===correct;
+  const explain = EXPLAINS[idx+1] ? `<div class="ans-line">เหตุผล: ${EXPLAINS[idx+1]}</div>` : "";
+  instantReveal.innerHTML = `<div class="${ok?'right':'wrong'}">${ok?'ถูกต้องจ้า ✔️':'ผิดจ้า ❌'}</div>
+  <div class="ans-line">คำตอบที่ถูก: <strong>${letter(correct)}) ${item.c[correct]}</strong></div>${explain}`;
+  show(instantReveal);
+}
+
+function renderQuestion(){
+  const item=QUESTIONS[idx]; 
+  qNumber.textContent=idx+1; 
+  qText.textContent=(idx+1)+". ["+item.cat+"] "+item.q;
+  choicesBox.classList.remove("locked");
+  choicesBox.innerHTML="";
+  item.c.forEach((text,i)=>{
+    const div=document.createElement('label'); 
+    const isChosen = answers[idx]===i;
+    div.className="choice"+(isChosen?" selected":"");
+    div.innerHTML=`<span class="label">${letter(i)}</span> <div>${text}</div><input type="radio" name="c">`;
+    div.addEventListener("click",()=>{
+      if(choicesBox.classList.contains("locked")) return;
+      answers[idx]=i; 
+      [...choicesBox.children].forEach(ch=>ch.classList.remove("selected","correct","wrong"));
+      div.classList.add("selected");
+      const correct=item.a;
+      if(i===correct){
+        div.classList.add("correct");
+      }else{
+        div.classList.add("wrong");
+        if(choicesBox.children[correct]) choicesBox.children[correct].classList.add("correct");
+      }
+      choicesBox.classList.add("locked");
+      renderReveal(item);
+    });
+    choicesBox.appendChild(div);
+  }); 
+  if(answers[idx]!=null){
+    const user=answers[idx], correct=item.a;
+    if(choicesBox.children[user]) choicesBox.children[user].classList.add(user===correct?"correct":"wrong","selected");
+    if(choicesBox.children[correct]) choicesBox.children[correct].classList.add("correct");
+    choicesBox.classList.add("locked");
+  }
+  setProgress();
+  renderReveal(item);
+}
+
+btnStart.addEventListener("click",()=>{
+  const name=playerNameI.value.trim()||"นักเรียนคนเก่ง"; 
+  localStorage.setItem("kp_name_eng_balanced",name); 
+  pillPlayer.textContent="👩‍🎓 ผู้เล่น: "+name; 
+  idx=0; 
+  show(screenQuiz); hide(screenStart); hide(screenResult); 
+  renderQuestion(); window.scrollTo({top:0,behavior:"smooth"});
+});
+const saved=localStorage.getItem("kp_name_eng_balanced"); if(saved){playerNameI.value=saved}
+
+btnNext.addEventListener("click",()=>{ 
+  if(idx<total-1){ idx++; renderQuestion(); } 
+  else { 
+    let score=0; 
+    for(let i=0;i<total;i++){ if(answers[i]===QUESTIONS[i].a) score++; } 
+    scoreText.textContent=`${score}/${total}`; 
+    if(score>=Math.ceil(total*0.8)){show(passText); hide(failText);} else {hide(passText); show(failText);} 
+    hide(screenQuiz); show(screenResult); window.scrollTo({top:0,behavior:"smooth"});
+  } 
+});
+
+btnPrev.addEventListener("click",()=>{ if(idx>0){ idx--; renderQuestion(); }});
+btnClear.addEventListener("click",()=>{ 
+  answers[idx]=null; 
+  instantReveal.innerHTML=""; hide(instantReveal);
+  renderQuestion(); 
+});
+btnReview.addEventListener("click",()=>{
+  reviewPanel.innerHTML=""; 
+  QUESTIONS.forEach((item,i)=>{
+    const wrap=document.createElement('div'); 
+    const correct=item.a; 
+    const user=answers[i]; 
+    const ok=user===correct;
+    wrap.className="review-item"; 
+    const exp = EXPLAINS[i+1]?`<div class="ans-line">เหตุผล: ${EXPLAINS[i+1]}</div>`:"";
+    const qText = item.q.replaceAll('\\n','<br>');
+    wrap.innerHTML=`<div><strong>${i+1}. [${item.cat}]</strong> ${qText} <span class="badge ${ok?'good':'bad'}">${ok?'ถูกต้อง':'ผิด'}</span></div>
+    <div class="ans-line">คำตอบที่เลือก: ${user!=null? (letter(user)+") "+item.c[user]) : "— ยังไม่ได้เลือก —"}</div>
+    <div class="ans-line">คำตอบที่ถูก: ${letter(correct)}) ${item.c[correct]}</div>${exp}`;
+    reviewPanel.appendChild(wrap);
+  }); 
+  show(reviewPanel); window.scrollTo({top:reviewPanel.offsetTop-80, behavior:"smooth"});
+});
+btnRestart.addEventListener("click",()=>{ 
+  for(let i=0;i<answers.length;i++) answers[i]=null; 
+  hide(screenResult); show(screenStart); 
+  reviewPanel.classList.add("hidden"); reviewPanel.innerHTML=""; 
+  passText.classList.add("hidden"); failText.classList.add("hidden"); 
+  bar.style.width="0%"; window.scrollTo({top:0, behavior:"smooth"});
+});
+</script>
+</body>
+</html>
